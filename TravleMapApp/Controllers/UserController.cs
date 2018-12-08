@@ -10,12 +10,12 @@ namespace TravleMapApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
         private readonly ITravelDestinationRepository _travelDestinationRepository;
 
-        public UsersController(IUserRepository userRepository,
+        public UserController(IUserRepository userRepository,
                                ITravelDestinationRepository travelDestinationRepository)
         {
             _userRepository = userRepository;
@@ -27,6 +27,11 @@ namespace TravleMapApp.Controllers
         public ActionResult<IEnumerable<UserDto>> Get()
         {
             var users = _userRepository.GetAll();
+            return NewMethod(users);
+        }
+
+        private ActionResult<IEnumerable<UserDto>> NewMethod(IEnumerable<UserDto> users)
+        {
             if (users != null)
             {
                 return Ok(users);
