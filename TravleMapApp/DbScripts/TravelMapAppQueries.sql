@@ -1,12 +1,12 @@
 ﻿CREATE TABLE Users (
-    Id int NOT NULL,
+    Id int NOT NULL IDENTITY,
 	FirstName varchar(255),
     LastName varchar(255),
 	PRIMARY KEY(ID)
 );
 
 CREATE TABLE Countries (
-    Id int NOT NULL,
+    Id int NOT NULL IDENTITY,
 	Name varchar(255),
 	PRIMARY KEY(ID)
 );
@@ -15,25 +15,25 @@ CREATE TABLE Travels (
     UserId int NOT NULL,
 	CountryId int NOT NULL,
 	CONSTRAINT travels_PK PRIMARY KEY (UserId, CountryID),
-	CONSTRAINT FK_user FOREIGN KEY (userId) REFERENCES dbo.Users (id),3
+	CONSTRAINT FK_user FOREIGN KEY (userId) REFERENCES dbo.Users (id),
 	CONSTRAINT FK_country FOREIGN KEY (countryId) REFERENCES dbo.Countries (id)
 );
 
-INSERT INTO Users (Id,FirstName,LastName)
+INSERT INTO Users (FirstName,LastName)
 VALUES 
-(1,'Konrad','Korf'),
-(2,'Tom','Cruise'),
-(3,'Martynka','Zajaczkowska'),
-(4,'Anna','Nowak'),
-(5,'River','Rose')
+('Konrad','Korf'),
+('Tom','Cruise'),
+('Martynka','Zajaczkowska'),
+('Anna','Nowak'),
+('River','Rose')
 
-INSERT INTO Countries(Id, Name)
+INSERT INTO Countries(Name)
 VALUES 
-(1,'Poland'),
-(2,'China'),
-(3,'Portugal'),
-(4,'Spain'),
-(5,'Sweden')
+('Poland'),
+('China'),
+('Portugal'),
+('Spain'),
+('Sweden')
 
 Insert Into Travels(UserId,CountryId)
 VALUES

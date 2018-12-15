@@ -3,7 +3,7 @@ using TravleMapApp.Dtos;
 
 namespace TravleMapApp.Repositories
 {
-    public interface ITravelDestinationRepository
+    public interface ICountryRepository
     {
         IEnumerable<TravelDestinationDto> GetAll();
         TravelDestinationDto Get(int id);

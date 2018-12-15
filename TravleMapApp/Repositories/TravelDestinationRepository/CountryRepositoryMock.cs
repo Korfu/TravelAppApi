@@ -8,7 +8,7 @@ using TravleMapApp.Transformators;
 
 namespace TravleMapApp.Repositories
 {
-    public class TravelDestinationRepositoryMock : ITravelDestinationRepository
+    public class CountryRepositoryMock : ICountryRepository
     {
         private List<TravelDestinationEntity> _allTravelDestinations = new List<TravelDestinationEntity>
         {

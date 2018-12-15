@@ -12,12 +12,12 @@ using TravleMapApp.Transformators;
 
 namespace TravleMapApp.Repositories
 {
-    public class TravelDestinationRepository : ITravelDestinationRepository
+    public class CountryRepository : ICountryRepository
     {
         private IConfiguration _configuration;
         private string _connectionString;
 
-        public TravelDestinationRepository(IConfiguration configuration)
+        public CountryRepository(IConfiguration configuration)
         {
             _configuration = configuration;
             _connectionString = _configuration["DefaultConnection"];

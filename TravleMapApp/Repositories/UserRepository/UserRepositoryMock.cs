@@ -8,7 +8,7 @@ using TravleMapApp.Transformators;
 
 namespace TravleMapApp.Repositories
 {
-    public class UserRepositoryMock : IUserRepository
+    public class UserRepositoryMock
     {
         public static List<UserEntity> _allUsers = new List<UserEntity> {
         new UserEntity {

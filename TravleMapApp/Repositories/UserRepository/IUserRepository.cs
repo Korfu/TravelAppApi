@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TravleMapApp.Controllers.ControllerParams;
 using TravleMapApp.Dtos;
 
 namespace TravleMapApp.Repositories
@@ -10,7 +11,7 @@ namespace TravleMapApp.Repositories
     {
         UserDto Get(int id);
         IEnumerable<UserDto> GetAll();
-        int Add(UserDto user);
+        void AddUser(AddUserParam user);
         void Edit(UserDto user);
         void Delete(UserDto user);
     }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using TravleMapApp.Repositories;
+using TravleMapApp.Repositories.TravelRepository;
 
 namespace TravleMapApp
 {
@@ -13,7 +14,8 @@ namespace TravleMapApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<ITravelDestinationRepository, TravelDestinationRepository>();
+            services.AddTransient<ICountryRepository, CountryRepository>();
+            services.AddTransient<ITravelRepository, TravelReopsitory>();
             services.AddMvc();
 
             services.AddSwaggerGen(c =>

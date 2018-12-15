@@ -12,9 +12,9 @@ namespace TravleMapApp.Controllers
     [ApiController]
     public class CountryController : ControllerBase
     {
-        private readonly ITravelDestinationRepository _travelDestinationRepository;
+        private readonly ICountryRepository _travelDestinationRepository;
 
-        public CountryController(ITravelDestinationRepository travelDestinationRepository)
+        public CountryController(ICountryRepository travelDestinationRepository)
         {
             _travelDestinationRepository = travelDestinationRepository;
         }

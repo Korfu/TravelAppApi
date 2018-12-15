@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TravleMapApp.Controllers.ControllerParams;
 using TravleMapApp.Dtos;
 using TravleMapApp.Repositories;
+using TravleMapApp.Repositories.TravelRepository;
 
 namespace TravleMapApp.Controllers
 {
@@ -13,13 +15,16 @@ namespace TravleMapApp.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly ITravelDestinationRepository _travelDestinationRepository;
+        private readonly ICountryRepository _countryRepository;
+        private readonly ITravelRepository _travelRepository;
 
         public UserController(IUserRepository userRepository,
-                               ITravelDestinationRepository travelDestinationRepository)
+                              ICountryRepository countryRepository,
+                              ITravelRepository travelRepository)
         {
             _userRepository = userRepository;
-            _travelDestinationRepository = travelDestinationRepository;
+            _countryRepository = countryRepository;
+            _travelRepository = travelRepository;
         }
 
         [HttpGet]
@@ -40,6 +45,7 @@ namespace TravleMapApp.Controllers
         public ActionResult<string> Get(int id)
         {
             var user = _userRepository.Get(id);
+            user.VisitedCountries = _travelRepository.GetTravelsForUser(id).ToList();  
             if (user != null)
             {
                 return Ok(user);
@@ -52,12 +58,22 @@ namespace TravleMapApp.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] UserDto user)
+        public IActionResult Post([FromBody] AddUserParam param)
         {
             if (ModelState.IsValid)
             {
-                var userToBeSaved = _userRepository.Add(user);
-                return Ok(user);
+                _userRepository.AddUser(param);
+                var userId = _userRepository.GetAll().Max(u => u.Id);
+                _travelRepository.AddTravel(userId, param.VisitedCountries);
+
+                var userToView = new UserDto
+                {
+                    Id = userId,
+                    FirstName = param.FirstName,
+                    LastName = param.LastName,
+                    VisitedCountries = param.VisitedCountries
+                };
+                return Ok(userToView);
             }
             else
             {

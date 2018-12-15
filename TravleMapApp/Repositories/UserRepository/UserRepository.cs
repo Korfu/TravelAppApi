@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using TravleMapApp.Controllers.ControllerParams;
 using TravleMapApp.Dtos;
 using TravleMapApp.Entities;
 using TravleMapApp.Helpers;
@@ -21,20 +22,17 @@ namespace TravleMapApp.Repositories
             _connectionString = _configuration["DefaultConnection"];
         }
 
-        public int Add(UserDto user)
+        public void AddUser(AddUserParam user)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(@"
-                  INSERT INTO Users (Id, FirstName, LastName)
-                  VALUES (@Id, @FirstName, @Lastname)");
-                  command.Parameters.AddWithValue("@Id", user.Id);
+                  INSERT INTO Users (FirstName, LastName)
+                  VALUES (@FirstName, @Lastname)");
                   command.Parameters.AddWithValue("@FirstName", user.FirstName);
                   command.Parameters.AddWithValue("@LastName", user.LastName);
 
                 sqlConnection.Execute(command.CommandText, command.ToDynamicParameters());
-
-                return user.Id;
             }
         }
         public void Delete(UserDto user)
