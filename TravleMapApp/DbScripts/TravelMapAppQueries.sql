@@ -15,7 +15,7 @@ CREATE TABLE Travels (
     UserId int NOT NULL,
 	CountryId int NOT NULL,
 	CONSTRAINT travels_PK PRIMARY KEY (UserId, CountryID),
-	CONSTRAINT FK_user FOREIGN KEY (userId) REFERENCES dbo.Users (id),
+	CONSTRAINT FK_user FOREIGN KEY (userId) REFERENCES dbo.Users (id),3
 	CONSTRAINT FK_country FOREIGN KEY (countryId) REFERENCES dbo.Countries (id)
 );
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TravleMapApp.Dtos;
+using TravleMapApp.Repositories;
 
 namespace TravleMapApp.Controllers
 {
@@ -11,22 +12,38 @@ namespace TravleMapApp.Controllers
     [ApiController]
     public class CountryController : ControllerBase
     {
+        private readonly ITravelDestinationRepository _travelDestinationRepository;
+
+        public CountryController(ITravelDestinationRepository travelDestinationRepository)
+        {
+            _travelDestinationRepository = travelDestinationRepository;
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<TravelDestinationDto>> Get()
         {
-            return new List<TravelDestinationDto> {
-                new TravelDestinationDto { Id=1,Name="Poland"},
-                new TravelDestinationDto { Id=2, Name="China"},
-                new TravelDestinationDto { Id=3, Name="Portugal"},
-                new TravelDestinationDto { Id=4, Name="Spain" },
-                new TravelDestinationDto { Id=5, Name="Sweden"}
-            };
+            var countries = _travelDestinationRepository.GetAll();
+            if (countries != null)
+            {
+                return Ok(countries);
+            } else
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet("{id}")]
         public ActionResult<TravelDestinationDto> Get(int id)
         {
-            return new TravelDestinationDto { Id = 1, Name = "Poland" };
+            var country = _travelDestinationRepository.Get(id);
+            if (country != null)
+            {
+                return Ok(country);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

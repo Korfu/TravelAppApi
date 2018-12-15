@@ -16,7 +16,7 @@ namespace TravleMapApp.Transformators
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Id = model.Id,
-                VisitedCountries = model.VisitedCountries.Select(y => new TravelDestinationDto
+                VisitedCountries = model?.VisitedCountries?.Select(y => new TravelDestinationDto
                 {
                     Id = y.Id,
                     Name = y.Name

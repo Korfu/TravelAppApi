@@ -22,16 +22,10 @@ namespace TravleMapApp.Controllers
             _travelDestinationRepository = travelDestinationRepository;
         }
 
-        // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<UserDto>> Get()
         {
             var users = _userRepository.GetAll();
-            return NewMethod(users);
-        }
-
-        private ActionResult<IEnumerable<UserDto>> NewMethod(IEnumerable<UserDto> users)
-        {
             if (users != null)
             {
                 return Ok(users);
@@ -39,10 +33,9 @@ namespace TravleMapApp.Controllers
             else
             {
                 return NotFound();
-            }
+            };
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
