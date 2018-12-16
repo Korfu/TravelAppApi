@@ -19,17 +19,17 @@ namespace TravleMapApp.Repositories
                  {
                      new TravelDestinationEntity
                      {
-                         Id=1,
+                         CountryId=1,
                          Name="Poland"
                      },
                      new TravelDestinationEntity
                      {
-                         Id=2,
+                         CountryId=2,
                          Name="USA"
                      },
                      new TravelDestinationEntity
                      {
-                         Id=3,
+                         CountryId=3,
                          Name="Argentina"
                      },
                  }
@@ -42,7 +42,7 @@ namespace TravleMapApp.Repositories
                  {
                      new TravelDestinationEntity
                      {
-                        Id=1,
+                        CountryId=1,
                         Name="Poland"
                      }
                  }
@@ -69,7 +69,7 @@ namespace TravleMapApp.Repositories
                 LastName = user.LastName,
                 VisitedCountries = user.VisitedCountries.Select(y => new TravelDestinationDto
                 {
-                    Id = y.Id,
+                    CountryId = y.CountryId,
                     Name = y.Name
                 }).ToList()
             };

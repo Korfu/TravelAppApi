@@ -18,7 +18,7 @@ namespace TravleMapApp.Transformators
                 Id = model.Id,
                 VisitedCountries = model?.VisitedCountries?.Select(y => new TravelDestinationDto
                 {
-                    Id = y.Id,
+                    CountryId = y.CountryId,
                     Name = y.Name
                 })
             };
@@ -35,7 +35,7 @@ namespace TravleMapApp.Transformators
                 Id = model.Id,
                 VisitedCountries = model.VisitedCountries.Select(y => new TravelDestinationEntity
                 {
-                    Id = y.Id,
+                    CountryId = y.CountryId,
                     Name = y.Name
                 })
             };

@@ -14,24 +14,24 @@ namespace TravleMapApp.Repositories
         {
             new TravelDestinationEntity
             {
-                Id=1,
+                CountryId=1,
                 Name="Poland"
             },
             new TravelDestinationEntity
             {
-                Id=2,
+               CountryId=2,
                 Name="USA"
             },
             new TravelDestinationEntity
             {
-                Id=3,
+                CountryId=3,
                 Name="Argentina"
             }
         };
 
         public TravelDestinationDto Get(int id)
         {
-            var result = _allTravelDestinations.First(x => x.Id == id);
+            var result = _allTravelDestinations.First(x => x.CountryId == id);
             return TravelDestinationTransformator.Map(result);
         }
 

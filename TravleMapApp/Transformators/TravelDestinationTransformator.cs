@@ -13,7 +13,7 @@ namespace TravleMapApp.Transformators
         {
             var result = new TravelDestinationDto()
             {
-                Id = model.Id,
+                CountryId = model.CountryId,
                 Name = model.Name
             };
             return result;
@@ -23,7 +23,7 @@ namespace TravleMapApp.Transformators
         {
             var result = new TravelDestinationEntity()
             {
-                Id = model.Id,
+                CountryId = model.CountryId,
                 Name = model.Name
             };
             return result;

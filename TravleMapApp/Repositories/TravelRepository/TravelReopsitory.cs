@@ -33,7 +33,7 @@ namespace TravleMapApp.Repositories.TravelRepository
                      INSERT INTO Travels (UserId, CountryId)
                       VALUES (@UserId, @CountryId)");
                     command.Parameters.AddWithValue("@UserId", userId);
-                    command.Parameters.AddWithValue("@CountryId", travel.Id);
+                    command.Parameters.AddWithValue("@CountryId", travel.CountryId);
 
                     sqlConnection.Execute(command.CommandText, command.ToDynamicParameters());
                 }
