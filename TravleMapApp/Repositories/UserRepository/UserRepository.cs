@@ -40,7 +40,6 @@ namespace TravleMapApp.Repositories
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 var command = new SqlCommand(@"
-                 DELETE FROM Travels WHERE UserId=@Id;
                  DELETE FROM Users WHERE Id=@Id;");
                 command.Parameters.AddWithValue("@Id", user.Id);
 

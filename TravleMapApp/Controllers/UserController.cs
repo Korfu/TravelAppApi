@@ -107,6 +107,7 @@ namespace TravleMapApp.Controllers
             if (ModelState.IsValid)
             {
                 var user = _userRepository.Get(id);
+                _travelRepository.DeleteTravelsForUser(id);
                 if (user != null)
                 {
                     _userRepository.Delete(user);

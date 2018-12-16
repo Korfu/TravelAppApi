@@ -10,5 +10,6 @@ namespace TravleMapApp.Repositories.TravelRepository
     {
         void AddTravel(int userId, IEnumerable<TravelDestinationDto> visitedCountries);
         IEnumerable<TravelDestinationDto> GetTravelsForUser(int userId);
+        void DeleteTravelsForUser(int userId);
     }
 }

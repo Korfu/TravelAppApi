@@ -54,5 +54,17 @@ namespace TravleMapApp.Repositories.TravelRepository
                 return visitedCountries.Select(country => TravelDestinationTransformator.Map(country));
             }
         }
+
+        public void DeleteTravelsForUser(int userId)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand(@"
+                 DELETE FROM Travels WHERE UserId=@Id");
+                command.Parameters.AddWithValue("@Id", userId);
+
+                sqlConnection.Execute(command.CommandText, command.ToDynamicParameters());
+            }
+        }
     }
 }
